@@ -428,7 +428,7 @@ if ($this->config->item('disable_read_only') == true) {
                                             value="<?php echo date_from_mysql($invoice->invoice_date_due); ?>"
                                             <?php if ($invoice->is_read_only == 1 || $invoice->invoice_sign == -1) {
                                                 echo 'disabled="disabled"';
-                                            } ?>>
+                                            } ?>>                                               
                                         <span class="input-group-addon">
                                             <i class="fa fa-calendar fa-fw"></i>
                                         </span>
