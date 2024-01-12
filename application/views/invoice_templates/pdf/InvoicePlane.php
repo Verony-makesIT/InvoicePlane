@@ -130,7 +130,7 @@
                         <td><?php _htmlsc($payment_method->payment_method_name); ?></td>
                     </tr>
                 <?php endif; ?>
-            <?php endif; ?>   
+            <?php endif; ?>
         </table>
     </div>
 
