@@ -383,9 +383,9 @@ if ($this->config->item('disable_read_only') == true) {
                                 <div class="invoice-properties">
                                     <label>
                                         <?php if ($invoice->invoice_sign == -1) {
-                                                echo _trans('credit_invoice');
+                                                echo trans('credit_invoice');
                                             } else {
-                                                echo _trans('invoice');
+                                                echo trans('invoice');
                                         } ?> #
                                     </label>
                                     <input type="text" id="invoice_number" class="form-control input-sm"

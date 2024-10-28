@@ -107,7 +107,8 @@
                                 <?php _trans('default_creditnote_terms'); ?>
                             </label>
                             <textarea name="settings[default_creditnote_terms]" id="settings[default_creditnote_terms]"
-                                class="form-control" rows="1"><?php echo get_setting('default_creditnote_terms', '', true); ?>
+                                class="form-control" rows="1">
+                                <?php echo get_setting('default_creditnote_terms', '', true); ?>
                             </textarea>
                         </div>
                     </div>
