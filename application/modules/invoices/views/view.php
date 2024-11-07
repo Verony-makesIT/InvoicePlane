@@ -390,7 +390,7 @@ if ($this->config->item('disable_read_only') == true) {
                                                 echo trans('credit_invoice');
                                             } else {
                                                 echo trans('invoice');
-                                        } ?> #
+                                        } ?> # 
                                     </label>
                                     <input type="text" id="invoice_number" class="form-control input-sm"
                                         <?php if ($invoice->invoice_number) : ?>
