@@ -230,7 +230,7 @@ if ($this->config->item('disable_read_only') == true) {
                 <i class="fa fa-caret-down no-margin"></i> <?php _trans('options'); ?>
             </a>
             <ul class="dropdown-menu">
-                <?php if ($invoice->is_read_only != 1) { ?>
+                <?php if ($invoice->is_read_only != 1 && $invoice->invoice_sign != -1) { ?>
                     <li>
                         <a href="#add-invoice-tax" data-toggle="modal">
                             <i class="fa fa-plus fa-margin"></i> <?php _trans('add_invoice_tax'); ?>
@@ -270,20 +270,24 @@ if ($this->config->item('disable_read_only') == true) {
                     </a>
                 </li>
                 <li class="divider"></li>
-                <li>
-                    <a href="#" id="btn_create_recurring"
-                       data-invoice-id="<?php echo $invoice_id; ?>">
-                        <i class="fa fa-refresh fa-margin"></i>
-                        <?php _trans('create_recurring'); ?>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" id="btn_copy_invoice"
-                       data-invoice-id="<?php echo $invoice_id; ?>">
-                        <i class="fa fa-copy fa-margin"></i>
-                        <?php _trans('copy_invoice'); ?>
-                    </a>
-                </li>
+                <?php if ($invoice->invoice_sign != -1) { ?>
+                    <li>
+                        <a href="#" id="btn_create_recurring"
+                        data-invoice-id="<?php echo $invoice_id; ?>">
+                            <i class="fa fa-refresh fa-margin"></i>
+                            <?php _trans('create_recurring'); ?>
+                        </a>
+                    </li>
+                <?php } ?>
+                <?php if ($invoice->invoice_sign != -1) { ?>
+                    <li>
+                        <a href="#" id="btn_copy_invoice"
+                        data-invoice-id="<?php echo $invoice_id; ?>">
+                            <i class="fa fa-copy fa-margin"></i>
+                            <?php _trans('copy_invoice'); ?>
+                        </a>
+                    </li>
+                <?php } ?>
                 <?php if ($invoice->invoice_status_id == 1 || ($this->config->item('enable_invoice_deletion') === true && $invoice->is_read_only != 1)) { ?>
                     <li>
                         <a href="#delete-invoice" data-toggle="modal">
@@ -386,7 +390,7 @@ if ($this->config->item('disable_read_only') == true) {
                                                 echo trans('credit_invoice');
                                             } else {
                                                 echo trans('invoice');
-                                        } ?> # 
+                                        } ?> #
                                     </label>
                                     <input type="text" id="invoice_number" class="form-control input-sm"
                                         <?php if ($invoice->invoice_number) : ?>
@@ -421,10 +425,10 @@ if ($this->config->item('disable_read_only') == true) {
                                     <div class="input-group">
                                         <input name="invoice_date_due" id="invoice_date_due"
                                             class="form-control input-sm datepicker"
-                                            value="<?php echo date_from_mysql($invoice->invoice_date_due); ?>"                                              
+                                            value="<?php echo date_from_mysql($invoice->invoice_date_due); ?>"
                                             <?php if ($invoice->is_read_only == 1 || $invoice->invoice_sign == -1) {
                                                 echo 'disabled="disabled"';
-                                            } ?>>                                               
+                                            } ?>>
                                         <span class="input-group-addon">
                                             <i class="fa fa-calendar fa-fw"></i>
                                         </span>

@@ -443,7 +443,8 @@ class Ajax extends Admin_Controller
             $this->mdl_invoices->update('ip_invoice_amounts', ['invoice_sign' => '-1']);
 
             // Update the invoice date created (today) and due date
-            $this->mdl_invoices->update_invoice_due_dates($target_id);
+            
+            $this->mdl_invoices->update_invoice_due_date($target_id);
 
             $response = [
                 'success' => 1,

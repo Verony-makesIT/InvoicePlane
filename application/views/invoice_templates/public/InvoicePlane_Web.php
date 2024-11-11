@@ -142,12 +142,14 @@
                             <?php endif; ?>  
                             <td style="text-align:right;"><?php echo date_from_mysql($invoice->invoice_date_created); ?></td>
                         </tr>
-                        <tr class="<?php echo($is_overdue ? 'overdue' : '') ?>">
-                            <td><?php echo trans('due_date'); ?></td>
-                            <td class="text-right">
-                                <?php echo date_from_mysql($invoice->invoice_date_due); ?>
-                            </td>
-                        </tr>
+                        <?php if ($invoice->invoice_sign != -1) : ?>
+                            <tr class="<?php echo($is_overdue ? 'overdue' : '') ?>">
+                                <td><?php echo trans('due_date'); ?></td>
+                                <td class="text-right">
+                                    <?php echo date_from_mysql($invoice->invoice_date_due); ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
                         <tr class="<?php echo($is_overdue ? 'overdue' : '') ?>">
                             <td><?php echo trans('amount_due'); ?></td>
                             <td style="text-align:right;"><?php echo format_currency($invoice->invoice_balance); ?></td>

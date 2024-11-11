@@ -1,3 +1,23 @@
+<script>
+    $(function () {
+        toggle_cni_settings();
+
+        $('#diff_cni_format').change(function () {
+            toggle_cni_settings();
+        });
+
+        function toggle_cni_settings() {
+            diff_cni_format = $('#diff_cni_format').val();
+
+            if (diff_cni_format === '1') {
+                $('#div-cni-settings').show();
+            } else {
+                $('#div-cni-settings').hide();
+            }
+        }
+    });
+</script>
+
 <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
 
@@ -31,11 +51,21 @@
                                 <?php _trans('default_terms'); ?>
                             </label>
                             <textarea name="settings[default_invoice_terms]" id="settings[default_invoice_terms]"
-                                class="form-control" rows="4"
+                                class="form-control" rows="2"
                                 ><?php echo get_setting('default_invoice_terms', '', true); ?></textarea>
                         </div>
 
+                        <div class="form-group">
+                            <label for="settings[default_creditnote_terms]">
+                                <?php _trans('default_creditnote_terms'); ?>
+                            </label>
+                            <textarea name="settings[default_creditnote_terms]" id="settings[default_creditnote_terms]"
+                                class="form-control" rows="2"
+                                ><?php echo get_setting('default_creditnote_terms', '', true); ?></textarea>
+                        </div>
+
                     </div>
+
                     <div class="col-xs-12 col-md-6">
 
                         <div class="form-group">
@@ -82,38 +112,50 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-12 col-md-6">                
-                        
+                    <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            <label for="settings[default_creditnote_group]">
-                                <?php _trans('default_creditnote_group'); ?>
+                            <label for="settings[diff_cni_format]">
+                                <?php _trans('diff_cni_format_enable'); ?>
                             </label>
-                            <select name="settings[default_creditnote_group]" id="settings[default_creditnote_group]"
-                                class="form-control simple-select" data-minimum-results-for-search="Infinity">
-                                <option value=""><?php _trans('none'); ?></option>
-                                <?php foreach ($invoice_groups as $invoice_group) { ?>
-                                    <option value="<?php echo $invoice_group->invoice_group_id; ?>"
-                                        <?php check_select(get_setting('default_creditnote_group'), $invoice_group->invoice_group_id); ?>>
-                                        <?php echo $invoice_group->invoice_group_name; ?>
-                                    </option>
-                                <?php } ?>
+                            <select name="settings[diff_cni_format]" 
+                                class="form-control simple-select"
+                                id="diff_cni_format" 
+                                data-minimum-results-for-search="Infinity">
+                                <option value="0" <?php check_select(get_setting('diff_cni_format'), '0'); ?>>
+                                    <?php _trans('no'); ?>
+                                </option>
+                                <option value="1" <?php check_select(get_setting('diff_cni_format'), '1'); ?>>
+                                    <?php _trans('yes'); ?>
+                                </option>
                             </select>
+                            <p class="help-block">
+                                <?php _trans('diff_cni_format_enable_hint'); ?>
+                            </p>
                         </div>
-
                     </div>
-                    <div class="col-xs-12 col-md-6"> 
-                        <div class="form-group">
-                            <label for="settings[default_creditnote_terms]">
-                                <?php _trans('default_creditnote_terms'); ?>
-                            </label>
-                            <textarea name="settings[default_creditnote_terms]" id="settings[default_creditnote_terms]"
-                                class="form-control" rows="1"> 
-                                <?php echo get_setting('default_creditnote_terms', '', true); ?>
-                            </textarea>
+
+                    <div id="div-cni-settings">
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="settings[default_creditnote_group]">
+                                    <?php _trans('default_creditnote_group'); ?>
+                                </label>
+                                <select name="settings[default_creditnote_group]"
+                                    id="settings[default_creditnote_group]"
+                                    class="form-control simple-select" 
+                                    data-minimum-results-for-search="Infinity">
+                                    <option value=""><?php _trans('none'); ?></option>
+                                    <?php foreach ($invoice_groups as $invoice_group) { ?>
+                                        <option value="<?php echo $invoice_group->invoice_group_id; ?>"
+                                            <?php check_select(get_setting('default_creditnote_group'), $invoice_group->invoice_group_id); ?>>
+                                            <?php echo $invoice_group->invoice_group_name; ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -338,8 +380,11 @@
                             <label for="settings[pdf_invoice_footer]">
                                 <?php _trans('pdf_invoice_footer'); ?>
                             </label>
-                            <textarea name="settings[pdf_invoice_footer]" id="settings[pdf_invoice_footer]"
-                                class="form-control no-margin"><?php echo get_setting('pdf_invoice_footer', '', true); ?></textarea>
+                            <textarea name="settings[pdf_invoice_footer]" 
+                                id="settings[pdf_invoice_footer]"
+                                class="form-control no-margin">
+                                <?php echo get_setting('pdf_invoice_footer', '', true); ?>
+                            </textarea>
                             <p class="help-block"><?php _trans('pdf_invoice_footer_hint'); ?></p>
                         </div>
 
