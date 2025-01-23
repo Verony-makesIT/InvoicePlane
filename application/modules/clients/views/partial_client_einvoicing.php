@@ -49,7 +49,7 @@
 
     </div>
 
-    <div id="div_show_einvoice"> 
+    <div id="div_show_einvoice">
         <div class="col-xs-12 col-md-6">
 
             <div class="form-group">

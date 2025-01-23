@@ -100,7 +100,7 @@ class Clients extends Admin_Controller
                 $this->load->model('user_clients/mdl_user_clients');
                 $this->mdl_user_clients->get_users_all_clients();
             }
-   
+
             $this->load->model('custom_fields/mdl_client_custom');
             $result = $this->mdl_client_custom->save_custom($id, $this->input->post('custom'));
 
@@ -125,7 +125,7 @@ class Clients extends Admin_Controller
             $req_user["user_country"] = $req_user["user_country"] == '' ? 1 : 0;
             $req_user["user_company"] = $req_user["user_company"] == '' ? 1 : 0;
             $req_user["user_vat_id"] = $req_user["user_vat_id"] == '' ? 1 : 0;
-            
+
             // required (client) fields for e-invoicing
             $req_client = [];
             $req_client = $this->db->from('ip_clients')->where('client_id', $id)->get()->row_array();
@@ -142,7 +142,7 @@ class Clients extends Admin_Controller
             }
 
             // show table record (or not)
-            $show_row = [];        
+            $show_row = [];
             $show_row["tr_show_address_1"] = $req_user["user_address_1"] + $req_client["client_address_1"] > 0 ? 1 : 0;
             $show_row["tr_show_zip"] = $req_user["user_zip"] + $req_client["client_zip"] > 0 ? 1 : 0;
             $show_row["tr_show_city"] = $req_user["user_city"] + $req_client["client_city"] > 0 ? 1 : 0;
@@ -219,7 +219,7 @@ class Clients extends Admin_Controller
         $this->load->helper('country');
         $this->load->helper('custom_values');
         $this->load->helper('e-invoice'); //eInvoicing++
-        
+
         $this->layout->set([
             'custom_fields'        => $custom_fields,
             'custom_values'        => $custom_values,
