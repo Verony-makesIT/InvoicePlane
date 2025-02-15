@@ -51,14 +51,10 @@
 
     <div id="div_show_einvoice">
         <div class="col-xs-12 col-md-6">
-
             <div class="form-group">
-                <label for="client_einvoice_version"><?php echo 'UBL / CII ' . trans('version'); ?></label>
                 <?php if ($req_einvoice['show_table'] == 0) { ?>
+                    <label for="client_einvoice_version"><?php echo 'UBL / CII ' . trans('version'); ?></label>
                     <select name="client_einvoice_version" id="client_einvoice_version" class="form-control">
-                <?php } else { ?>
-                    <select disabled name="client_einvoice_version" id="client_einvoice_version" class="form-control">
-                <?php } ?>
                     <option value=""><?php echo trans('none'); ?></option>
                     <?php foreach ($xml_templates as $xml_key => $xml_template) { ?>
                         <option value="<?php echo $xml_key; ?>"
@@ -66,24 +62,16 @@
                             <?php echo $xml_template; ?>
                         </option>
                     <?php } ?>
-                </select>
-                <?php if ($req_einvoice['show_table'] == 1) { ?>
-                    <p class="help-block"><?php echo trans('einvoicing_ubl_cii_required_help'); ?></p>
-                <?php } else { ?>
+                    </select>
                     <p class="help-block"><?php echo trans('einvoicing_ubl_cii_creation_help'); ?></p>
-                <?php } ?>
-            </div>
-        </div>
-
-        <!-- check if mandatory e-invoicing fields are empty -->
-        <div class="col-xs-12 col-md-6">
-            <div class="form-group">
-                <div class="table-responsive">
-                    <?php if ($req_einvoice['show_table'] == 1) { ?>
+                
+                <?php } else { ?>    
+                    <div class="table-responsive">
+                    <!-- <?php //if ($req_einvoice['show_table'] == 1) { ?> -->
                         <table class="table table-hover table-condensed table-bordered no-margin">
-                    <?php } else { ?>
-                        <table style="display:none;">
-                    <?php } ?>
+                    <!-- <?php //} else { ?> -->
+                        <!-- <table style="display:none;"> -->
+                    <!-- <?php //} ?> -->
                         <thead>
                             <tr>
                                 <th><?php _trans('required_fields'); ?></th>
@@ -238,8 +226,18 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
+                    </div>                    
+
+                <?php } ?>
+            </div> 
         </div>
+
+        <!-- check if mandatory e-invoicing fields are empty -->
+        <!-- <div class="col-xs-12 col-md-6"> -->
+            <!-- <div class="form-group"> -->
+
+            <!-- </div> -->
+
+        <!-- </div> -->
     </div>
 </div>
