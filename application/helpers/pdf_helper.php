@@ -129,9 +129,9 @@ function generate_invoice_pdf($invoice_id, $stream = true, $invoice_template = n
     $CI->load->helper('mpdf');
     $retval = pdf_create($html, $filename, $stream, $invoice->invoice_password, true, $is_guest, $embed_xml, $associatedFiles);
 
-    if ($embed_xml && file_exists('./uploads/temp/' . $filename . '.xml')) {
+    if ($embed_xml && file_exists(UPLOADS_TEMP_FOLDER . $filename . '.xml')) {
         // delete the tmp CII-XML file
-        unlink("./uploads/temp/" . $filename . ".xml");
+        unlink(UPLOADS_TEMP_FOLDER . $filename . ".xml");
     }
 
     // Create the UBL XML file

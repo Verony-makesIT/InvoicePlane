@@ -40,8 +40,7 @@ class Zugferdv10Xml
         $this->root->appendChild($this->xmlSpecifiedSupplyChainTradeTransaction());
 
         $this->doc->appendChild($this->root);
-        $this->doc->save(UPLOADS_FOLDER . 'temp/' . $this->filename . '.xml');
-        // return $this->doc->saveXML();
+        $this->doc->save(UPLOADS_TEMP_FOLDER . $this->filename . '.xml');
     }
 
     protected function xmlRoot()

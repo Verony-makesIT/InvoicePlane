@@ -28,6 +28,7 @@ if (! defined('BASEPATH')) {
  * @param null $associated_files
  *
  * @return string
+ *
  * @throws \Mpdf\MpdfException
  */
 function pdf_create(
@@ -66,7 +67,7 @@ function pdf_create(
     if ($embed_xml) {                                       // eInvoicing++
         $CI->load->helper('e-invoice');                     // eInvoicing++
         // mpdf only creates PDF/A-1b files and cannot create the required PDF/A-3b files!
-        $mpdf->pdf_version = "1.7";
+        $mpdf->pdf_version = '1.7';
         $mpdf->PDFA = true;
         $mpdf->PDFAauto = true;
         $mpdf->SetAssociatedFiles($associated_files);
