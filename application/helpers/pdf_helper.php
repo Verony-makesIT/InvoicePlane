@@ -79,7 +79,7 @@ function generate_invoice_pdf($invoice_id, $stream = true, $invoice_template = n
     // START eInvoicing++ changes
     $CI->load->helper('settings');
 
-    $file_prefix = date('Y-m-d') . '_' . trans('invoice');
+    $file_prefix = trans('invoice');
     $replace = array('.', ' ', '/', '\\', '#');
     if (get_setting('change_filename_prefix') == 1) {
         $user_item = get_setting('add_filename_prefix');
@@ -88,10 +88,11 @@ function generate_invoice_pdf($invoice_id, $stream = true, $invoice_template = n
     $filename = $file_prefix . '_' . str_replace($replace, '', $invoice->invoice_number);
 
     // Generate the appropriate UBL/CII
-    $xml_id = $invoice->client_einvoice_version;
-    $embed_xml = '';
-    if (file_exists(APPPATH . 'helpers/XMLconfigs/' . $xml_id . '.php')) {
-        include APPPATH . 'helpers/XMLconfigs/' . $xml_id . '.php';
+    $xml_id     = $invoice->client_einvoice_version;
+    $embed_xml  = '';
+    $path       = APPPATH . 'helpers/XMLconfigs/';
+    if (file_exists($path . $xml_id . '.php')) {
+        include $path . $xml_id . '.php';
 
         $embed_xml = $xml_setting['embedXML'];
         $XMLname = $xml_setting['XMLname'];

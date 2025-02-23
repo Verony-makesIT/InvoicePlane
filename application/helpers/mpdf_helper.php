@@ -120,7 +120,12 @@ function pdf_create(
         }
 
         // eInvoicing++
+        $archived_file = UPLOADS_ARCHIVE_FOLDER . date('Y-m-d') . '_' . $filename . '.pdf';
+        if (get_setting('change_filename_prefix') == 1) {
         $archived_file = UPLOADS_ARCHIVE_FOLDER . $filename . '.pdf';
+        }
+        // eInvoicing++
+
         $mpdf->Output($archived_file, 'F');
 
         if ($stream) {
