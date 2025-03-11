@@ -1,10 +1,14 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (! defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 /*
  * InvoicePlane
  *
  * @author      InvoicePlane Developers & Contributors
- * @copyright   Copyright (c) 2012 - 2017 InvoicePlane.com
+ * @copyright	Copyright (c) 2012 - 2018 InvoicePlane.com
  * @license     https://invoiceplane.com/license.txt
  * @link        https://invoiceplane.com
  *
@@ -13,11 +17,12 @@
  *
  */
 
-class Ublexamv20Xml
+#[AllowDynamicProperties]
+class ZugferdXml
 {
-    var $invoice;
-    var $doc;
-    var $root;
+    public $invoice;
+    public $doc;
+    public $root;
 
     public function __construct($params)
     {
@@ -25,7 +30,7 @@ class Ublexamv20Xml
         $this->invoice = $params['invoice'];
         $this->items = $params['items'];
         $this->filename = $params['filename'];
-        $this->currencyCode = get_setting('currency_code');
+        $this->currencyCode = $CI->mdl_settings->setting('currency_code');
     }
 
     public function xml()
